@@ -53,22 +53,22 @@ All variables mentioned here are optional.
 
 * `offline_masterkey_dir`
 
-    * default: ~/.tor/offlinemasterkeys
-    * Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
-    * Within that folder ansible will create a subfolder for every tor instance.
+    - * default: ~/.tor/offlinemasterkeys
+    - * Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
+    - * Within that folder ansible will create a subfolder for every tor instance.
 
-* `tor_signingkeylifetime_days` integer
+* - `tor_signingkeylifetime_days` integer
 
-    * defines the lifetime of Ed25519 signing keys in days
-    * indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
-    * lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
-    * default: 30
+    - * defines the lifetime of Ed25519 signing keys in days
+    - * indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
+    - * lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
+    - * default: 30
 
-* `tor_LogLevel`
-    * specify tor's loglevel (minSeverity)
-    * possible values: debug, info, notice, warn and err
-    * logs will go to syslog only (distinct files are not supported)
-    * default: notice
+* - `tor_LogLevel`
+    - * specify tor's loglevel (minSeverity)
+    - * possible values: debug, info, notice, warn and err
+    - * logs will go to syslog only (distinct files are not supported)
+    - * default: notice
 
 * `tor_ContactInfo`
     Sets the relay's ContactInfo field.
@@ -102,33 +102,33 @@ All variables mentioned here are optional.
 
 * `tor_ips`
 
-  * If you want to use only specific IP addresses for Tor.
-  * Makes only sense in host_vars context.
+    - If you want to use only specific IP addresses for Tor.
+    -  Makes only sense in host_vars context.
 
 * `tor_maxips`
 
-  - Limits the amount of IPs we will use to generate instances on a single host.
-  - Indirectly limits the amount of instances we generate per host.
-  - If tor_ips is set, tor_maxips has no effect.
-  - default: 10
+    - Limits the amount of IPs we will use to generate instances on a single host.
+    - Indirectly limits the amount of instances we generate per host.
+    - If tor_ips is set, tor_maxips has no effect.
+    - default: 10
 
 * `tor_enableControlSocket`
 
-  - will create a ControlSocket file named 'controlsocket' in every instance's datadir
-  - authentication relies on filesystem permissions
-  - default: False
+    - will create a ControlSocket file named 'controlsocket' in every instance's datadir
+    - authentication relies on filesystem permissions
+    - default: False
 
 * `freebsd_somaxconn`
 
-  - configure kern.ipc.somaxconn on FreeBSD
-  - by default we increase this value to at least 1024
-  - if the value is higher than that we do not touch it
+    - configure kern.ipc.somaxconn on FreeBSD
+    - by default we increase this value to at least 1024
+    - if the value is higher than that we do not touch it
 
 * `freebsd_nmbclusters`
 
-  - configure kern.ipc.nmbclusters on FreeBSD
-  - by default we increase this value to at least 30000
-  - if the value is higher than that we do not touch it
+    - configure kern.ipc.nmbclusters on FreeBSD
+    - by default we increase this value to at least 30000
+    - if the value is higher than that we do not touch it
 
 This role supports most torrc options documented in the 'SERVER OPTIONS'
 section of tor's manual. Set them via 'tor_OptionName'.
