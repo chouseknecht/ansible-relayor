@@ -21,16 +21,19 @@ Main benefits for a tor relay operator
 Requirements
 ------------
 ansible host:
+
 - tor >= 0.2.7
 - ansible >= 1.9.4 < 2.0
 - python-netaddr
 
 target hosts:
+
 - a non-root user with sudo
 - python 2 under /usr/bin/python
 
 Supported Operating Systems
 ---------------------------
+
 - Debian 8
 - CentOS 7 (incl. SELinux support)
 - OpenBSD >= 5.8 with tor >= 0.2.7.5 (available via snapshots since 2015-11-28)
@@ -40,6 +43,7 @@ Supported Operating Systems
 
 Supported Tor Releases
 -----------------------
+
 - tor >= 0.2.7.5
 
 
@@ -48,17 +52,20 @@ Role Variables
 All variables mentioned here are optional.
 
 * `offline_masterkey_dir`
+
    - default: ~/.tor/offlinemasterkeys
    - Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
    - Within that folder ansible will create a subfolder for every tor instance.
 
 * `tor_signingkeylifetime_days` integer
+
    - defines the lifetime of Ed25519 signing keys in days
    - indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
    - lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
    - default: 30
 
 * `tor_LogLevel`
+
    - specify tor's loglevel (minSeverity)
    - possible values: debug, info, notice, warn and err
    - logs will go to syslog only (distinct files are not supported)
@@ -68,19 +75,23 @@ All variables mentioned here are optional.
     Sets the relay's ContactInfo field.
 
 * `tor_nickname`
+
   - up to 19 chars long, must contain only the characters [a-zA-Z0-9]
   - all tor instances on a host will get the same nickname
 
 * `tor_ExitRelay` boolean 
+
   - You will want to set this to True if you want to run exit relays.
   - default: False
 
 * `tor_ExitPolicy`
+
   - specify your custom exit policy
   - is only relevant if tor_ExitRelay is True
   - default: reduced exit policy (https://trac.torproject.org/projects/tor/wiki/doc/ReducedExitPolicy)
 
 * `tor_ports`
+
   - This var allows you to
     - select tor's ORPort and DirPort
     - reduce the number of Tor instances created per IP address
@@ -91,26 +102,31 @@ All variables mentioned here are optional.
     - instance 2: ORPort 9100, DirPort 9101
 
 * `tor_ips`
+
   * If you want to use only specific IP addresses for Tor.
   * Makes only sense in host_vars context.
 
 * `tor_maxips`
+
   - Limits the amount of IPs we will use to generate instances on a single host.
   - Indirectly limits the amount of instances we generate per host.
   - If tor_ips is set, tor_maxips has no effect.
   - default: 10
 
 * `tor_enableControlSocket`
+
   - will create a ControlSocket file named 'controlsocket' in every instance's datadir
   - authentication relies on filesystem permissions
   - default: False
 
 * `freebsd_somaxconn`
+
   - configure kern.ipc.somaxconn on FreeBSD
   - by default we increase this value to at least 1024
   - if the value is higher than that we do not touch it
 
 * `freebsd_nmbclusters`
+
   - configure kern.ipc.nmbclusters on FreeBSD
   - by default we increase this value to at least 30000
   - if the value is higher than that we do not touch it
@@ -127,6 +143,7 @@ Using ansible tags is optional but allows you to speed up playbook runs if
 you are managing many servers.
 
 There are OS specific tags:
+
 * debian (includes ubuntu)
 * centos
 * fedora
@@ -134,6 +151,7 @@ There are OS specific tags:
 * openbsd
 
 Non OS specific tags:
+
 * **renewkey** - takes care of renewing online Ed25519 keys only (assumes that tor instances are fully configured and running already)
 * install - installs tor but does not start or enable it
 * createdir - creates (empty) directories (locally and remote) and the tor users required to setup fs permissions, usefull for migration
