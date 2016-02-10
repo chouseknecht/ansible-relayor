@@ -53,36 +53,34 @@ All variables mentioned here are optional.
 
 * `offline_masterkey_dir`
 
-   - default: ~/.tor/offlinemasterkeys
-   - Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
-   - Within that folder ansible will create a subfolder for every tor instance.
+   * default: ~/.tor/offlinemasterkeys
+   * Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
+   * Within that folder ansible will create a subfolder for every tor instance.
 
 * `tor_signingkeylifetime_days` integer
-
-   - defines the lifetime of Ed25519 signing keys in days
-   - indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
-   - lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
-   - default: 30
+   * defines the lifetime of Ed25519 signing keys in days
+   * indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
+   * lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
+   * default: 30
 
 * `tor_LogLevel`
-
-   - specify tor's loglevel (minSeverity)
-   - possible values: debug, info, notice, warn and err
-   - logs will go to syslog only (distinct files are not supported)
-   - default: notice
+   * specify tor's loglevel (minSeverity)
+   * possible values: debug, info, notice, warn and err
+   * logs will go to syslog only (distinct files are not supported)
+   * default: notice
 
 * `tor_ContactInfo`
     Sets the relay's ContactInfo field.
 
 * `tor_nickname`
 
-  - up to 19 chars long, must contain only the characters [a-zA-Z0-9]
-  - all tor instances on a host will get the same nickname
+    - up to 19 chars long, must contain only the characters [a-zA-Z0-9]
+    - all tor instances on a host will get the same nickname
 
 * `tor_ExitRelay` boolean 
 
-  - You will want to set this to True if you want to run exit relays.
-  - default: False
+    - You will want to set this to True if you want to run exit relays.
+    - default: False
 
 * `tor_ExitPolicy`
 
