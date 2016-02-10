@@ -153,11 +153,11 @@ make two steps
 
 1. install the new server by running only against the new server (-l) and only the os specific tag (openbsd)
 
-`ansible-playbook tor.yml -l newserver --tags openbsd`
+    `ansible-playbook tor.yml -l newserver --tags openbsd`
 
 2. then reconfigure all servers (MyFamily) by running the 'reconfigure' tag against all servers.
 
-`ansible-playbook tor.yml --tags reconfigure`
+    `ansible-playbook tor.yml --tags reconfigure`
 
 Security Considerations
 ------------------------
