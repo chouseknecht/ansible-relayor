@@ -53,21 +53,22 @@ All variables mentioned here are optional.
 
 * `offline_masterkey_dir`
 
-   * default: ~/.tor/offlinemasterkeys
-   * Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
-   * Within that folder ansible will create a subfolder for every tor instance.
+    * default: ~/.tor/offlinemasterkeys
+    * Defines the location where on the ansible host relay keys (ed25519 and RSA) are stored.
+    * Within that folder ansible will create a subfolder for every tor instance.
 
 * `tor_signingkeylifetime_days` integer
-   * defines the lifetime of Ed25519 signing keys in days
-   * indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
-   * lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
-   * default: 30
+
+    * defines the lifetime of Ed25519 signing keys in days
+    * indirectly defines **how often you have to run your ansible playbook to ensure keys do not expire**
+    * lower values (eg. 7) are better from a security point of view but require more frequent playbook runs
+    * default: 30
 
 * `tor_LogLevel`
-   * specify tor's loglevel (minSeverity)
-   * possible values: debug, info, notice, warn and err
-   * logs will go to syslog only (distinct files are not supported)
-   * default: notice
+    * specify tor's loglevel (minSeverity)
+    * possible values: debug, info, notice, warn and err
+    * logs will go to syslog only (distinct files are not supported)
+    * default: notice
 
 * `tor_ContactInfo`
     Sets the relay's ContactInfo field.
@@ -84,18 +85,18 @@ All variables mentioned here are optional.
 
 * `tor_ExitPolicy`
 
-  - specify your custom exit policy
-  - is only relevant if tor_ExitRelay is True
-  - default: reduced exit policy (https://trac.torproject.org/projects/tor/wiki/doc/ReducedExitPolicy)
+    - specify your custom exit policy
+    - is only relevant if tor_ExitRelay is True
+    - default: reduced exit policy (https://trac.torproject.org/projects/tor/wiki/doc/ReducedExitPolicy)
 
 * `tor_ports`
 
-  - This var allows you to
+    - This var allows you to
     - select tor's ORPort and DirPort
     - reduce the number of Tor instances created per IP address
-  - disable DirPorts by setting them to 0
-  - HINT: choose them wisely and *never* change them again ;)
-  - default:
+    - disable DirPorts by setting them to 0
+    - HINT: choose them wisely and *never* change them again ;)
+    - default:
     - instance 1: ORPort 9000, DirPort 9001
     - instance 2: ORPort 9100, DirPort 9101
 
